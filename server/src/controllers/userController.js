@@ -8,6 +8,8 @@ const controller = require('../socketInit');
 const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
+const path = require('path');
+const fs = require('fs')
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -152,6 +154,13 @@ module.exports.payment = async (req, res, next) => {
 module.exports.updateUser = async (req, res, next) => {
   try {
     if (req.file) {
+      const foundUser = await userQueries.findUser(req.tokenData.userId)
+      if(foundUser.avatar && foundUser.avatar !== 'anon.png'){
+        const oldPath = path.join(CONSTANTS.FILES_PATH,'images',foundUser.avatar)
+        if(fs.existsSync(oldPath)){
+          fs.unlinkSync(oldPath)
+        }
+      }
       req.body.avatar = req.file.filename;
     }
     const updatedUser = await userQueries.updateUser(req.body,

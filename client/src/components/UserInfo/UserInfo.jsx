@@ -15,7 +15,7 @@ const UserInfo = (props) => {
     formData.append('displayName', values.displayName);
     props.updateUser(formData);
   };
-
+  
   const { isEdit, changeEditMode, data } = props;
   const { avatar, firstName, lastName, displayName, email, role, balance } =
     data;

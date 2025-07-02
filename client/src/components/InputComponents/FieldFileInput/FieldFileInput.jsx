@@ -18,7 +18,7 @@ const FieldFileInput = ({ classes,name, ...rest }) => {
           return '';
         };
 
-        onchange = (e) =>{
+        const onchange = (e) =>{
           const file = e.target.files[0];
           helpers.setValue(file,false);
         }

@@ -73,6 +73,7 @@ const UpdateUserInfoForm = props => {
             inputContainer: styles.uploadInputContainer,
             imgStyle: styles.imgStyle,
           }}
+          avatar={props.initialValues.avatar}
         />
         <button type='submit' disabled={submitting}>
           Submit
@@ -90,6 +91,7 @@ const mapStateToProps = state => {
       firstName: data.firstName,
       lastName: data.lastName,
       displayName: data.displayName,
+      avatar: data.avatar
     },
   };
 };
