@@ -36,7 +36,7 @@ const ImageUpload = props => {
       </div>
       <img
         id="imagePreview"
-        className={classNames({ [imgStyle]: !!value })}
+        className={classNames( imgStyle )}
         src={props.avatar==='anon.png'?CONSTANTS.ANONYM_IMAGE_PATH:`${CONSTANTS.publicURL}/${props.avatar}`}
         alt="user"
       />
