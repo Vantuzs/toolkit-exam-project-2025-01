@@ -12,7 +12,7 @@ const FieldFileInput = ({ classes,name, ...rest }) => {
   //       const { field } = props;
 
         const getFileName = () => {
-          if (props.field.value) {
+          if (value) {
             return value.name;
           }
           return '';

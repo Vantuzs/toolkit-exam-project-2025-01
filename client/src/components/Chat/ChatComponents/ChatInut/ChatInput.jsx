@@ -34,6 +34,7 @@ const ChatInput = (props) => {
               input: styles.input,
               notValid: styles.notValid,
             }}
+            ChatProps={true}
           />
           <button type="submit">
             <img
