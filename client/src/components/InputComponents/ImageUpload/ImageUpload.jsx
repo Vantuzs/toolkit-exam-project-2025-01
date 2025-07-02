@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import classNames from 'classnames';
 import { useField } from 'formik';
 import CONSTANTS from '../../../constants.js'
 
+
 const ImageUpload = props => {
   const [{value,...restField}, meta, helpers] = useField(props.name);
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
+  console.log(value);
   const onChange = e => {
     const node = window.document.getElementById('imagePreview');
     const file = e.target.files[0];
@@ -14,13 +16,9 @@ const ImageUpload = props => {
       e.target.value = '';
     } else {
       helpers.setValue(file,false);
-      const reader = new FileReader();
-      reader.onload = () => {
-        node.src = reader.result;
-      };
-      reader.readAsDataURL(file);
     }
   };
+
   return (
     <div className={uploadContainer}>
       <div className={inputContainer}>
@@ -34,12 +32,20 @@ const ImageUpload = props => {
         />
         <label htmlFor="fileInput">Chose file</label>
       </div>
+      {(value || props.avatar)&&
       <img
         id="imagePreview"
         className={classNames( imgStyle )}
-        src={props.avatar==='anon.png'?CONSTANTS.ANONYM_IMAGE_PATH:`${CONSTANTS.publicURL}/${props.avatar}`}
+        // src={props.avatar==='anon.png'?CONSTANTS.ANONYM_IMAGE_PATH:`${CONSTANTS.publicURL}/${props.avatar}`}
+        src={
+      value
+        ? URL.createObjectURL(value)
+        : props.avatar === 'anon.png'
+          ? CONSTANTS.ANONYM_IMAGE_PATH
+          : `${CONSTANTS.publicURL}/${props.avatar}`
+    }
         alt="user"
-      />
+      />}
     </div>
   );
 };
