@@ -183,8 +183,6 @@ const resolveOffer = async (
       arrayRoomsId.push(offer.userId);
     }
   });
-  console.log('== EMIT REJECT ==', arrayRoomsId);
-console.log('== EMIT WIN ==', creatorId);
 controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_WON,target: creatorId,
   message: 'Someone of your offers WIN', contestId});
   arrayRoomsId.length>0 && controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_REJECTED,target:arrayRoomsId,
