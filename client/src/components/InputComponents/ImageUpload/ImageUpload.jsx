@@ -7,7 +7,6 @@ import CONSTANTS from '../../../constants.js'
 const ImageUpload = props => {
   const [{value,...restField}, meta, helpers] = useField(props.name);
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
-  console.log(value);
   const onChange = e => {
     const node = window.document.getElementById('imagePreview');
     const file = e.target.files[0];

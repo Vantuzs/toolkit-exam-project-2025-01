@@ -148,8 +148,8 @@ module.exports.setNewOffer = async (req, res, next) => {
 const rejectOffer = async (offerId, creatorId, contestId) => {
   const rejectedOffer = await contestQueries.updateOffer(
     { status: CONSTANTS.OFFER_STATUS_REJECTED }, { id: offerId });
-  controller.getNotificationController().emitChangeOfferStatus(creatorId,
-    'Someone of yours offers was rejected', contestId);
+  controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_REJECTED,target: creatorId,
+    message: 'Someone of yours offers was rejected', contestId});
   return rejectedOffer;
 };
 
@@ -179,15 +179,16 @@ const resolveOffer = async (
   transaction.commit();
   const arrayRoomsId = [];
   updatedOffers.forEach(offer => {
-    if (offer.status === CONSTANTS.OFFER_STATUS_REJECTED && creatorId !==
-      offer.userId) {
+    if (offer.id !== offerId && creatorId !== offer.userId) {
       arrayRoomsId.push(offer.userId);
     }
   });
-  controller.getNotificationController().emitChangeOfferStatus(arrayRoomsId,
-    'Someone of yours offers was rejected', contestId);
-  controller.getNotificationController().emitChangeOfferStatus(creatorId,
-    'Someone of your offers WIN', contestId);
+  console.log('== EMIT REJECT ==', arrayRoomsId);
+console.log('== EMIT WIN ==', creatorId);
+controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_WON,target: creatorId,
+  message: 'Someone of your offers WIN', contestId});
+  arrayRoomsId.length>0 && controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_REJECTED,target:arrayRoomsId,
+    message:'Someone of yours offers was rejected', contestId});
   return updatedOffers[ 0 ].dataValues;
 };
 

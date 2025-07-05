@@ -16,15 +16,22 @@ class NotificationSocket extends WebSocket {
 
   onChangeMark = () => {
     this.socket.on('changeMark', () => {
-      toast('Someone liked your offer');
+      toast.info('Someone liked your offer');
     });
   };
 
   onChangeOfferStatus = () => {
-    this.socket.on('changeOfferStatus', message => {
-      toast(
-        <Notification message={message.message} contestId={message.contestId} />
-      );
+    this.socket.on('changeOfferStatus', data => {
+      if(data.status === 'won'){
+        console.log(data);
+        toast.success(
+          <Notification message={data.message} contestId={data.contestId} />
+        );
+      } else if (data.status === 'rejected'){
+        toast.error(
+          <Notification message={data.message} contestId={data.contestId} />
+        );
+      }
     });
   };
 
