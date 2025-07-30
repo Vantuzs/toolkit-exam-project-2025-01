@@ -1,31 +1,31 @@
 import React from 'react';
 
-import style from './HeaderRight.module.scss'
+import styles from './HeaderRight.module.scss'
 
 const HeaderRight = () => {
     return (
-        <div class={style['header-right']}>
-            <div class={style['search-icon']}>
+        <div className={styles['header-right']}>
+            <div className={styles['search-icon']}>
                 <img src='https://www.atom.com/html/html/html/static_images/icon-search.svg'/>
                 </div>
-            <div class={`${style['account-box']} ${style.dropdown}`}>
-                <div class={style['dropdown-toggle']}>
-                    <div class={style.icon}>
+            <div className={`${styles['account-box']} ${styles.dropdown}`}>
+                <div className={styles['dropdown-toggle']}>
+                    <div className={styles.icon}>
                         <img src="https://www.atom.com/html/html/html/static_images/icon-user.svg" alt="" />
                     </div>
                 </div>
-                <ul class={style['dropdown-menu']}>
+                <ul className={styles['dropdown-menu']}>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-account']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-account']}`}>
                                 <img src="https://www.atom.com/public/images/icon-account.svg" alt="" />
                             </div>
                             Login
                         </a>
                     </li>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-account']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-account']}`}>
                                 <img src="https://www.atom.com/public/images/icon-account.svg" alt="" />
                             </div>
                             Signup
@@ -33,40 +33,40 @@ const HeaderRight = () => {
                     </li>
                 </ul>
             </div>
-            <div class={`${style['phone-box']} ${style.dropdown}`}>
-                <div class={style['dropdown-toggle']}>
-                    <div class={style.icon}>
+            <div className={`${styles['phone-box']} ${styles.dropdown}`}>
+                <div className={styles['dropdown-toggle']}>
+                    <div className={styles.icon}>
                         <img src="https://www.atom.com/public/images/icon-phone.svg" alt="" />
                     </div>
                 </div>
-                <ul class={style['dropdown-menu']}>
+                <ul className={styles['dropdown-menu']}>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-phone']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-phone']}`}>
                                 <img src="https://www.atom.com/public/images/icon-phone.svg" alt="" />
                             </div>
                             (877) 355-3585
                         </a>
                     </li>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-chat']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-chat']}`}>
                                 <img src="https://www.atom.com/public/images/icon-chat-black.svg" alt="" />
                             </div>
                             Chat
                         </a>
                     </li>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-email']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-email']}`}>
                                 <img src="https://www.atom.com/public/images/icon-email.svg" alt="" />
                             </div>
                             Email
                         </a>
                     </li>
                     <li>
-                        <a class={style['dropdown-item']} href="">
-                            <div class={`${style.icon} ${style['icon-help']}`}>
+                        <a className={styles['dropdown-item']} href="">
+                            <div className={`${styles.icon} ${styles['icon-help']}`}>
                                 <img src="https://www.atom.com/public/images/icon-help.svg" alt="" />
                             </div>
                             Help Desk
@@ -74,7 +74,7 @@ const HeaderRight = () => {
                     </li>
                 </ul>
             </div>
-            <a class={style['favorites-box']} href="">
+            <a className={styles['favorites-box']} href="">
                 <img src="https://www.atom.com/html/html/html/static_images/icon-heart.svg" alt="" />
             </a>
         </div>
