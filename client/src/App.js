@@ -20,6 +20,7 @@ import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatCo
 import Layout from './pages/Layout/Layout';
 import OnlyNotAuthorizedUserRoute from './components/Routes/OnlyNotAuthorizedUserRoute/OnlyNotAuthorizedUserRoute';
 import PrivateRoute from './components/Routes/PrivateRoute/PrivateRoute';
+import AtomPage from './pages/AtomPage/AtomPage';
 
 class App extends Component {
   render() {
@@ -81,6 +82,7 @@ class App extends Component {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
+          <Route path='/atom' element={<AtomPage/>}/>
         </Routes>
         <ChatContainer />
       </Router>
