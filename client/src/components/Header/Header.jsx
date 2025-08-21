@@ -126,6 +126,12 @@ class Header extends React.Component {
             <div className={styles.nav}>
               <ul>
                 <li>
+                  <a href="http://localhost:3000/atom" className={styles.events}>ATOM</a>
+                </li>
+                <li>
+                  <a href="http://localhost:3000/events" className={styles.events}>EVENTS</a>
+                </li>
+                <li>
                   <span>NAME IDEAS</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
