@@ -27,7 +27,6 @@ const ModeratorPageFunc = (props) => {
   if (offerStore.offers && offerStore.offers.length > 0) {
     setOffers((prev) => {
       const indew = new Set(prev.map(o=>o.id));
-      console.log(indew);
       const filter = offerStore.offers.filter(o=> !indew.has(o.id))
       return[...prev, ...filter]
     });

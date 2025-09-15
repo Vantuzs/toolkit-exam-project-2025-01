@@ -5,10 +5,10 @@ const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
 const UtilFunctions = require('../utils/functions');
 const CONSTANTS = require('../constants');
+const {sendModeratorAnswer} = require('../utils/meiler')
 const { where } = require('sequelize');
 
 module.exports.getOffers = (req, res, next) => {
-  console.log(req.body);
   db.Offers.findAll({
     where: {isModerated: false,
       status: 'pending'
@@ -51,19 +51,27 @@ const rejectOffer = async (offerId, creatorId, contestId = 'Moderator') => {
 };
 
 module.exports.setOfferStatusModerator = async (req, res, next) => {
-  if (req.body.command === 'reject') {
-    try {
-      const offer = await rejectOffer(req.body.offerId);
-      res.send(offer);
-    } catch (err) {
-      next(err);
+  const {offerId,command,creatorId} = req.body
+
+  try {
+    let offer
+
+    if(command === 'reject'){
+      offer = await rejectOffer(offerId,creatorId)
+    } else if(command === 'resolve'){
+      offer = await resolveOffer(offerId)
     }
-  } else if (req.body.command === 'resolve') {
-    try {
-      const offer = await resolveOffer(req.body.offerId);
-      res.send(offer);
-    } catch (err) {
-      next(err);
+
+    const user = await db.Users.findByPk(creatorId,{
+      attributes: ['email','displayName']
+    })
+
+    if(user){
+      await sendModeratorAnswer(user.email,command,offerId)
     }
+
+    res.send(offer)
+  } catch (error) {
+    next(error)
   }
 };

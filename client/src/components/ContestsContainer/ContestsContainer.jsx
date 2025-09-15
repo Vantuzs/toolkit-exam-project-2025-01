@@ -17,7 +17,6 @@ class ContestsContainer extends React.Component {
       document.documentElement.offsetHeight
     ) {
       if (this.props.haveMore) {
-        console.log(this.props);
         this.props.loadMore(this.props.children.length);
       }
     }
@@ -25,7 +24,6 @@ class ContestsContainer extends React.Component {
 
   render () {
     const { isFetching,children } = this.props;
-    console.log(this.props.children);
     if (!isFetching && this.props.children.length === 0) {
       return <div className={styles.notFound}>Nothing not found</div>;
     }

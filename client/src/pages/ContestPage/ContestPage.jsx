@@ -41,7 +41,6 @@ class ContestPage extends React.Component {
 
   setOffersList = () => {
     const array = [];
-    console.log(this.props.contestByIdStore.offers[1]);
     for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
       array.push(
         <OfferBox

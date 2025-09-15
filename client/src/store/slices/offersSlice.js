@@ -3,7 +3,6 @@ import CONSTANTS from '../../constants';
 import * as restController from '../../api/rest/restController';
 import {
   decorateAsyncThunk,
-  rejectedReducer,
   createExtraReducers,
   pendingReducer
 } from '../../utils/store';
@@ -22,13 +21,10 @@ const initialState = {
   haveMore: true
 }
 
-// getAllOfers
 export const getAllOfers = decorateAsyncThunk({
   key: `${OFFERS_SLISE_NAME}/getAllOffers`,
   thunk: async payload => {
-    console.log('1');
     const {data} = await restController.getAllOffers(payload)
-    console.log(data);
     return data
   }
 })
@@ -44,15 +40,6 @@ export const setOfferStatusModerator = decorateAsyncThunk({
 const setOfferStatusModeratorExtraReducers = createExtraReducers({
   thunk: setOfferStatusModerator,
   fulfilledReducer: (state, { payload }) => {
-    // state.offers.forEach(offer => {
-    //   if (payload.isModarated === true) {
-    //     offer.isModarated = true
-    //   } else if (payload.id === offer.id) {
-    //     offer.isModarated = false
-    //     offer.status = CONSTANTS.OFFER_STATUS_REJECTED;
-    //   }
-    // });
-    // state.error = null;
       state.offers = state.offers.map(offer =>
     offer.id === payload.id
       ? {
