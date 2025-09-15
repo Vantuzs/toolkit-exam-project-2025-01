@@ -6,6 +6,7 @@ const contestController = require('../controllers/contestController');
 const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
+const offerController = require('../controllers/offerController')
 const upload = require('../utils/fileUpload');
 const router = express.Router();
 
@@ -177,5 +178,17 @@ router.post(
   checkToken.checkToken,
   chatController.getCatalogs,
 );
+
+router.post(
+  '/getAllOffers',
+  // checkToken.checkToken,
+  offerController.getOffers
+)
+
+router.post(
+  '/setOfferStatusModerator',
+  // checkToken.checkToken,
+  offerController.setOfferStatusModerator
+)
 
 module.exports = router;

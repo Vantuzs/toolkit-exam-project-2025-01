@@ -41,11 +41,36 @@ class ContestPage extends React.Component {
 
   setOffersList = () => {
     const array = [];
+    console.log(this.props.contestByIdStore.offers[1]);
     for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
       array.push(
         <OfferBox
           data={this.props.contestByIdStore.offers[i]}
           key={this.props.contestByIdStore.offers[i].id}
+          needButtons={this.needButtons}
+          setOfferStatus={this.setOfferStatus}
+          contestType={this.props.contestByIdStore.contestData.contestType}
+          date={new Date()}
+        />
+      );
+    }
+    return array.length !== 0 ? (
+      array
+    ) : (
+      <div className={styles.notFound}>
+        There is no suggestion at this moment
+      </div>
+    );
+  };
+
+  setVerifiOffersList = () => {
+    const array = [];
+    const verifiOffers = this.props.contestByIdStore.offers.filter(o => o.isModerated)
+    for (let i = 0; i < verifiOffers.length; i++) {
+      array.push(
+        <OfferBox
+          data={verifiOffers[i]}
+          key={verifiOffers[i].id}
           needButtons={this.needButtons}
           setOfferStatus={this.setOfferStatus}
           contestType={this.props.contestByIdStore.contestData.contestType}
@@ -197,7 +222,7 @@ class ContestPage extends React.Component {
                       clearError={clearSetOfferStatusError}
                     />
                   )}
-                  <div className={styles.offers}>{this.setOffersList()}</div>
+                  <div className={styles.offers}>{role === CONSTANTS.MODERATOR? null : role === CONSTANTS.CUSTOMER ? this.setVerifiOffersList(): this.setOffersList()}</div>
                 </div>
               )}
             </div>

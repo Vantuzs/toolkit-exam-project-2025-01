@@ -145,7 +145,7 @@ module.exports.setNewOffer = async (req, res, next) => {
   }
 };
 
-const rejectOffer = async (offerId, creatorId, contestId) => {
+const rejectOffer = async (offerId, creatorId, contestId = 'Moderator') => {
   const rejectedOffer = await contestQueries.updateOffer(
     { status: CONSTANTS.OFFER_STATUS_REJECTED }, { id: offerId });
   controller.getNotificationController().emitChangeOfferStatus({status: CONSTANTS.OFFER_STATUS_REJECTED,target: creatorId,

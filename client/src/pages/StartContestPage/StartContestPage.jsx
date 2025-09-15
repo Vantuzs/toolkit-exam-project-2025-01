@@ -10,8 +10,9 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 const StartContestPage = props => {
   const navigate = useNavigate();
 
-  if (props.userStore.data.role !== CONSTANTS.CUSTOMER) {
+  if (props.userStore.data.role !== CONSTANTS.CUSTOMER && CONSTANTS.MODERATOR) {
     navigate('/', { replace: true });
+    return (<div>You not CUSTOMER!</div>)
   }
 
   const setBundle = bundleStr => {

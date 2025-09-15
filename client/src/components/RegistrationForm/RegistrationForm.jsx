@@ -16,6 +16,7 @@ class RegistrationForm extends React.Component {
   }
 
   clicked = values => {
+    console.log('values',values);
     this.props.register({
       data: {
         firstName: values.firstName,
@@ -127,6 +128,15 @@ class RegistrationForm extends React.Component {
                 infoRole='I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.'
                 component={RoleInput}
                 id={CONSTANTS.CREATOR}
+              />
+              <Field
+                name='role'
+                type='radio'
+                value={CONSTANTS.MODERATOR}
+                strRole='Join As a Moderator'
+                infoRole='I plan to filter user offers and help the company.'
+                component={RoleInput}
+                id={CONSTANTS.MODERATOR}
               />
             </div>
             <div className={styles.termsOfService}>

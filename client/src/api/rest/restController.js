@@ -61,3 +61,8 @@ export const getContestById = data =>
       contestId: data.contestId,
     },
   });
+
+export const getAllOffers = data =>
+  http.post('getAllOffers',data);
+
+export const setOfferStatusModerator = data => http.post('setOfferStatusModerator',data)

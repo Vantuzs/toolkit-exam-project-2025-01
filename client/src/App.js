@@ -22,6 +22,8 @@ import OnlyNotAuthorizedUserRoute from './components/Routes/OnlyNotAuthorizedUse
 import PrivateRoute from './components/Routes/PrivateRoute/PrivateRoute';
 import AtomPage from './pages/AtomPage/AtomPage';
 import EventsPage from './pages/EventsPage/EventsPage';
+import ModeratorPage from './pages/ModeratorPage/ModeratorPage';
+import ModeratorDashbord from './pages/ModeratorPage/ModeratorDashbord';
 
 class App extends Component {
   render() {
@@ -80,6 +82,7 @@ class App extends Component {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/contest/:id" element={<ContestPage />}/>
               <Route path="/account" element={<UserProfile />}/>
+            <Route path="/moderator" element={<ModeratorDashbord />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>

@@ -41,6 +41,11 @@ module.exports = {
         allowNull: true,
         defaultValue: 'pending',
       },
+      isModerated: {
+        type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

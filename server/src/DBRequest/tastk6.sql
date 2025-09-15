@@ -74,3 +74,7 @@ SELECT u."firstName", m.body,utc.black_list,utc.favorite_list,m.created_at FROM 
 JOIN "Users_to_Conversations" as utc ON u.id = utc.user_id
 JOIN "Messages" as m ON m.sender = u.id
 ORDER BY m.created_at;
+
+
+UPDATE "Offers" as o SET "isModerated" = true
+WHERE o.id = 105
