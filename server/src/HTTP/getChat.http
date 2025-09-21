@@ -1,0 +1,7 @@
+POST http://localhost:5000/getChatSQL HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJKb2huIiwidXNlcklkIjoyLCJyb2xlIjoiY3VzdG9tZXIiLCJsYXN0TmFtZSI6IkRvZSIsImF2YXRhciI6ImFub24ucG5nIiwiZGlzcGxheU5hbWUiOiJCdXllcm90dGkiLCJiYWxhbmNlIjoiMCIsImVtYWlsIjoiam9obi5kb2VAZ21haWwuY29tIiwicmF0aW5nIjowLCJpYXQiOjE3NTgyOTA3NjUsImV4cCI6MTc1ODI5NDM2NX0.M0y0LZOHivckE9I3bO9faJAZzfPXCWaBiwMPCTyV2pU
+Content-Type: application/json
+
+{
+    "interlocutorId": 1
+}

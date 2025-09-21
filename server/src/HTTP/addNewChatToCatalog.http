@@ -1,0 +1,11 @@
+POST http://localhost:5000/addNewChatToCatalogSQL HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJKb2huIiwidXNlcklkIjoyLCJyb2xlIjoiY3VzdG9tZXIiLCJsYXN0TmFtZSI6IkRvZSIsImF2YXRhciI6ImFub24ucG5nIiwiZGlzcGxheU5hbWUiOiJCdXllcm90dGkiLCJiYWxhbmNlIjoiMCIsImVtYWlsIjoiam9obi5kb2VAZ21haWwuY29tIiwicmF0aW5nIjowLCJpYXQiOjE3NTgzNjU5MTIsImV4cCI6MTc1ODM2OTUxMn0.7rqaAM4f-Kvm5TJaDbgLPt6Xwrsn2hO0dwc_21cj_hE
+Content-Type: application/json
+
+{
+    "catalogId": 1,
+    "chatId": 6
+}
+
+
+

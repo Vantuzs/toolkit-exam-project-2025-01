@@ -48,6 +48,59 @@ db[ 'Ratings' ].belongsTo(db[ 'Users' ],
 db[ 'Ratings' ].belongsTo(db[ 'Offers' ],
   { foreignKey: 'offerId', targetKey: 'id' });
 
+
+// Conversations
+db[ 'Conversations' ].hasMany(db[ 'Messages' ],
+  { foreignKey: 'conversationId', targetKey: 'id' });
+db[ 'Messages' ].belongsTo(db[ 'Conversations' ],
+  { foreignKey: 'conversationId', sourceKey: 'id' });
+
+// Conversations-UsersToConversations
+db[ 'Conversations' ].hasMany(db[ 'UsersToConversations' ],
+  { foreignKey: 'conversationId', as: 'participants' });
+db[ 'UsersToConversations' ].belongsTo(db[ 'Conversations' ],
+  { foreignKey: 'conversationId', as: 'conversation' });
+
+// Users-UsersToCOnversations
+db[ 'Users' ].hasMany(db[ 'UsersToConversations' ],
+  { foreignKey: 'userId', as: 'userConversations' });
+db[ 'UsersToConversations' ].belongsTo(db[ 'Users' ],
+  { foreignKey: 'userId', as: 'user' });
+
+// Users-Conversations
+db[ 'Users' ].belongsToMany(db[ 'Conversations' ],
+  { through: db['UsersToConversations'] ,foreignKey: 'userId'});
+db[ 'Conversations' ].belongsToMany(db[ 'Users' ],
+  { through: db['UsersToConversations'] ,foreignKey: 'conversationId'});
+
+// Messages
+db[ 'Messages' ].belongsTo(db['Users'],
+  {foreignKey: 'sender', targetKey: 'id'});
+db[ 'Users' ].hasMany(db['Messages'],
+  {foreignKey: 'sender', sourceKey: 'id'});
+
+// Catalogs
+db[ 'Catalogs' ].belongsTo(db['Users'],
+  {foreignKey: 'userId', sourceKey: 'id'});
+db[ 'Users' ].hasMany(db['Catalogs'],
+  {foreignKey: 'userId', sourceKey: 'id'});
+
+// db[ 'Catalogs' ].belongsTo(db['Conversations'],
+//   {foreignKey: 'conversationId', sourceKey: 'id'});
+// db[ 'Conversations' ].hasMany(db['Catalogs'],
+//   {foreignKey: 'conversationId', sourceKey: 'id'});
+
+db[ 'Catalogs' ].hasMany(db[ 'CatalogsToConversations' ],
+  {foreignKey: 'catalogId', as: 'conversationLinks'});
+db[ 'CatalogsToConversations' ].belongsTo(db[ 'Catalogs' ],
+  {foreignKey: 'catalogId', as: 'catalog'});
+
+
+db[ 'Conversations' ].hasMany(db[ 'CatalogsToConversations' ],
+  {foreignKey: 'conversationId', as: 'catalogLinks'});
+db[ 'CatalogsToConversations' ].belongsTo(db[ 'Conversations' ],
+  {foreignKey: 'conversationId', as: 'conversation'});
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

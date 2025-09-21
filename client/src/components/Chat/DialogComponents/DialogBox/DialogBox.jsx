@@ -40,7 +40,6 @@ const DialogBox = props => {
         })
       }
     >
-      {console.log(interlocutor)}
       <img
         src={
           interlocutor.avatar === 'anon.png'

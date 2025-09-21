@@ -7,6 +7,7 @@ const checkToken = require('../middlewares/checkToken');
 const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const offerController = require('../controllers/offerController')
+const chatCntrollerSQL = require('../controllers/chatControllerSQL')
 const upload = require('../utils/fileUpload');
 const router = express.Router();
 
@@ -189,6 +190,72 @@ router.post(
   '/setOfferStatusModerator',
   // checkToken.checkToken,
   offerController.setOfferStatusModerator
+)
+
+router.post(
+  '/sendMessageSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.addMessage
+)
+
+router.post(
+  '/getChatSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.getChat
+)
+
+router.post(
+  '/getPrevewSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.getPreview
+)
+
+router.post(
+  '/blackListSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.blackList
+)
+
+router.post(
+  '/favoriteSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.favoriteChat
+)
+
+router.post(
+  '/createCatalogSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.createCatalog
+)
+
+router.post(
+  '/updateNameCatalogSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.updateNameCatalog
+)
+
+router.post(
+  '/addNewChatToCatalogSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.addNewChatToCatalog
+)
+
+router.post(
+  '/removeChatFromCatalogSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.removeChatFromCatalog
+)
+
+router.post(
+  '/deleteCatalogSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.deleteCatalog
+)
+
+router.post(
+  '/getCatalogsSQL',
+  checkToken.checkToken,
+  chatCntrollerSQL.getCatalogs
 )
 
 module.exports = router;

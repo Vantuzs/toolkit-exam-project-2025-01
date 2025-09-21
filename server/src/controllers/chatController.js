@@ -174,6 +174,7 @@ module.exports.getPreview = async (req, res, next) => {
         }
       });
     });
+    console.log(conversations);
     res.send(conversations);
   } catch (err) {
     next(err);
@@ -281,6 +282,7 @@ module.exports.getCatalogs = async (req, res, next) => {
         },
       },
     ]);
+    console.log('QQQQQQQQQQQQQQQQQQ',catalogs);
     res.send(catalogs);
   } catch (err) {
     next(err);

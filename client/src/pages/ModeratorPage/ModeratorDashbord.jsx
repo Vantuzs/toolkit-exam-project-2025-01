@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import CONSTANTS from '../../constants';
-import ModeratorPage from './ModeratorPage';
 import ModeratorPageFunc from './ModeratorPageFunc';
 
 const ModeratorDashbord = props => {
