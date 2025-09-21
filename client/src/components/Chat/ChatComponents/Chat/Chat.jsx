@@ -30,7 +30,7 @@ class Chat extends React.Component {
 
   renderDialogList = () => {
     const { setChatPreviewMode } = this.props;
-    const { chatMode, isShowChatsInCatalog } = this.props.chatStore;
+    const { chatMode, isShowChatsInCatalog,messagesPreview } = this.props.chatStore;
     const { id } = this.props.userStore.data;
     const {
       NORMAL_PREVIEW_CHAT_MODE,
@@ -40,6 +40,7 @@ class Chat extends React.Component {
     } = CONSTANTS;
     return (
       <div>
+        {console.log(messagesPreview)}
         {isShowChatsInCatalog && <CatalogListHeader />}
         {!isShowChatsInCatalog && (
           <div className={styles.chatHeader}>

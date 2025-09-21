@@ -27,12 +27,12 @@ const DialogBox = props => {
   const isBlocked = blackList[participants.indexOf(userId)];
   return (
     <div
-      className={styles.previewChatBox}
-      onClick={() =>
-        goToExpandedDialog({
-          interlocutor,
-          conversationData: {
-            participants,
+    className={styles.previewChatBox}
+    onClick={() =>
+      goToExpandedDialog({
+        interlocutor,
+        conversationData: {
+          participants,
             _id,
             blackList,
             favoriteList,

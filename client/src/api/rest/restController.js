@@ -10,21 +10,21 @@ export const downloadContestFile = data =>
   http.get(`downloadFile/${data.fileName}`);
 export const payMent = data => http.post('pay', data.formData);
 export const changeMark = data => http.post('changeMark', data);
-export const getPreviewChat = () => http.post('getPreview');
-export const getDialog = data => http.post('getChat', data);
+export const getPreviewChat = () => http.post('getPrevewSQL');
+export const getDialog = data => http.post('getChatSQL', data);
 export const dataForContest = data => http.post('dataForContest', data);
 export const cashOut = data => http.post('cashout', data);
 export const updateUser = data => http.post('updateUser', data);
-export const newMessage = data => http.post('newMessage', data);
-export const changeChatFavorite = data => http.post('favorite', data);
-export const changeChatBlock = data => http.post('blackList', data);
-export const getCatalogList = data => http.post('getCatalogs', data);
-export const addChatToCatalog = data => http.post('addNewChatToCatalog', data);
-export const createCatalog = data => http.post('createCatalog', data);
-export const deleteCatalog = data => http.post('deleteCatalog', data);
+export const newMessage = data => http.post('sendMessageSQL', data);
+export const changeChatFavorite = data => http.post('favoriteSQL', data);
+export const changeChatBlock = data => http.post('blackListSQL', data);
+export const getCatalogList = data => http.post('getCatalogsSQL', data);
+export const addChatToCatalog = data => http.post('addNewChatToCatalogSQL', data);
+export const createCatalog = data => http.post('createCatalogSQL', data);
+export const deleteCatalog = data => http.post('deleteCatalogSQL', data);
 export const removeChatFromCatalog = data =>
-  http.post('removeChatFromCatalog', data);
-export const changeCatalogName = data => http.post('updateNameCatalog', data);
+  http.post('removeChatFromCatalogSQL', data);
+export const changeCatalogName = data => http.post('updateNameCatalogSQL', data);
 export const getCustomersContests = data =>
   http.post(
     'getCustomersContests',
