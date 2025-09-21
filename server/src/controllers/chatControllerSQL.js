@@ -190,7 +190,7 @@ module.exports.getPreview = async (req, res, next) => {
 module.exports.blackList = async (req, res, next) => {
   const chatData = {id: 7}
   try {
-      const chat = await db.UsersToConversations.update({
+      const [,[chat]] = await db.UsersToConversations.update({
           blackList: req.body.blackListFlag
         },{
             where: {
@@ -201,11 +201,11 @@ module.exports.blackList = async (req, res, next) => {
         })
         if(!chat) throw new ServerError(404,'404 chat not found')
             
-            const interlocutorId = req.body.participants.filter(participant =>
+            const [interlocurorId] = req.body.participants.filter(participant =>
                 participant !== req.tokenData.userId
             )
             
-            res.send({chat,interlocutorId})
+            res.send({chat,interlocurorId})
             
         } catch (err) {
         next(err);
@@ -216,7 +216,7 @@ module.exports.blackList = async (req, res, next) => {
 module.exports.favoriteChat = async (req, res, next) => {
       const chatData = {id: 7}
   try {
-    const chat = await db.UsersToConversations.update({
+    const [,[chat]] = await db.UsersToConversations.update({
           favoriteList: req.body.favoriteFlag
         },{
             where: {
@@ -258,7 +258,7 @@ module.exports.createCatalog = async (req, res, next) => {
 
 module.exports.updateNameCatalog = async (req, res, next) => {
   try {
-    const catalog = await db.Catalogs.update({
+    const [,[catalog]] = await db.Catalogs.update({
         catalogName: req.body.catalogName
     },{
         where: { id: req.body.catalogId,userId: req.tokenData.userId},
