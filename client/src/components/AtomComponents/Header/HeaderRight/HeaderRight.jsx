@@ -82,5 +82,3 @@ const HeaderRight = () => {
 }
 
 export default HeaderRight;
-
-// https://www.atom.com/how-it-works

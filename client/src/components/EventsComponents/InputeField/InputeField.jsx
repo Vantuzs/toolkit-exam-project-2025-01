@@ -77,8 +77,7 @@ function scheduleTaskReminder(task) {
   deleteTimers(task.id)
 
   const timers = {}
-
-  // Напоминание
+  
   if (reminderTime > now) {
     timers.warningTimer = setTimeout(() => {
       console.log(`Напоминание по задаче ${task.id}`);
@@ -86,8 +85,7 @@ function scheduleTaskReminder(task) {
   } else if (reminderTime <= now && reminderTime > now - 60000) {
     console.log(`Напоминание (пропущенное) по задаче ${task.id}`);
   }
-
-  // Дедлайн
+  
   if (deadlineTime > now) {
     timers.deadlineTimer = setTimeout(() => {
       console.log(`Дедлайн по задаче ${task.id} наступил!`);

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path')
-// const {format} = require('date-fns');
 
 const LOG_FILE = path.join(__dirname,'error_log.jsonl');
 const LOGS_DIR = path.join(__dirname,'logs');

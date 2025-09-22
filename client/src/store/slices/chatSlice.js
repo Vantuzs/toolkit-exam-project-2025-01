@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice,current } from '@reduxjs/toolkit';
 import { isEqual, remove } from 'lodash';
 import * as restController from '../../api/rest/restController';
 import CONSTANTS from '../../constants';
@@ -34,7 +34,6 @@ export const getPreviewChat = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/getPreviewChat`,
   thunk: async () => {
     const { data } = await restController.getPreviewChat();
-    console.log('QQQQQQQQ',data);
     return data;
   },
 });
@@ -66,6 +65,7 @@ const getDialogMessagesExtraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     state.messages = payload.messages;
     state.interlocutor = payload.interlocutor;
+    state.chatData.id = payload.messages.length ? payload.messages[0].conversationId: payload.interlocutor.id
   },
   rejectedReducer: (state, { payload }) => {
     state.messages = [];
@@ -87,6 +87,7 @@ const sendMessageExtraReducers = createExtraReducers({
   thunk: sendMessage,
   fulfilledReducer: (state, { payload }) => {
     const { messagesPreview } = state;
+
     let isNew = true;
     messagesPreview.forEach(preview => {
       if (isEqual(preview.participants, payload.message.participants)) {
@@ -100,7 +101,7 @@ const sendMessageExtraReducers = createExtraReducers({
       messagesPreview.push(payload.preview);
     }
     const chatData = {
-      _id: payload.preview.id,
+      id: payload.preview.id,
       participants: payload.preview.participants,
       favoriteList: payload.preview.favoriteList,
       blackList: payload.preview.blackList,
@@ -127,11 +128,12 @@ const changeChatFavoriteExtraReducers = createExtraReducers({
   thunk: changeChatFavorite,
   fulfilledReducer: (state, { payload }) => {
     const { messagesPreview } = state;
+
     messagesPreview.forEach(preview => {
       if (isEqual(preview.participants, payload.participants))
         preview.favoriteList = payload.favoriteList;
     });
-    state.chatData = {_id: payload.id,...payload};
+    state.chatData = payload;
     state.messagesPreview = messagesPreview;
   },
   rejectedReducer: (state, { payload }) => {
@@ -153,10 +155,10 @@ const changeChatBlockExtraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     const { messagesPreview } = state;
     messagesPreview.forEach(preview => {
-      if (isEqual(preview.participants, payload.participants))
-        preview.blackList = payload.blackList;
+      if (isEqual(preview.participants, payload.resChat.participants))
+        preview.blackList = payload.resChat.blackList;
     });
-    state.chatData = {_id: payload.id,...payload};
+    state.chatData = payload.resChat;
     state.messagesPreview = messagesPreview;
   },
   rejectedReducer: (state, { payload }) => {
@@ -196,7 +198,7 @@ const addChatToCatalogExtraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     const { catalogList } = state;
     for (let i = 0; i < catalogList.length; i++) {
-      if (catalogList[i]._id === payload.id) {
+      if (catalogList[i].id === payload.id) {
         catalogList[i].chats = payload.chats;
         break;
       }
@@ -246,7 +248,7 @@ const deleteCatalogExtraReducers = createExtraReducers({
     const { catalogList } = state;
     const newCatalogList = remove(
       catalogList,
-      catalog => payload.catalogId !== catalog._id
+      catalog => payload.catalogId !== catalog.id
     );
     state.catalogList = [...newCatalogList];
   },
@@ -269,7 +271,7 @@ const removeChatFromCatalogExtraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     const { catalogList } = state;
     for (let i = 0; i < catalogList.length; i++) {
-      if (catalogList[i]._id === payload.id) {
+      if (catalogList[i].id === payload.id) {
         catalogList[i].chats = payload.chats;
         break;
       }
@@ -296,7 +298,7 @@ const changeCatalogNameExtraReducers = createExtraReducers({
   fulfilledReducer: (state, { payload }) => {
     const { catalogList } = state;
     for (let i = 0; i < catalogList.length; i++) {
-      if (catalogList[i]._id === payload.id) {
+      if (catalogList[i].id === payload.id) {
         catalogList[i].catalogName = payload.catalogName;
         break;
       }
@@ -318,7 +320,7 @@ const reducers = {
       if (isEqual(preview.participants, payload.participants))
         preview.blackList = payload.blackList;
     });
-    state.chatData = {_id: payload.id,...payload};
+    state.chatData = {id: payload.id,...payload};
     state.messagesPreview = messagesPreview;
   },
 

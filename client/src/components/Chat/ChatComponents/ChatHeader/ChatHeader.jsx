@@ -10,7 +10,6 @@ import styles from './ChatHeader.module.sass';
 import CONSTANTS from '../../../../constants';
 
 const ChatHeader = (props) => {
-  console.log('123',props.chatData.id);
   const changeFavorite = (data, event) => {
     props.changeChatFavorite(data);
     event.stopPropagation();
@@ -64,7 +63,7 @@ const ChatHeader = (props) => {
                   {
                     participants: chatData.participants,
                     favoriteFlag: !isFavorite(chatData, userId),
-                    conversationId: chatData._id
+                    conversationId: chatData.id,
                   },
                   event
                 )
@@ -74,14 +73,13 @@ const ChatHeader = (props) => {
                 'fas fa-heart': isFavorite(chatData, userId),
               })}
             />
-            {console.log(chatData)}
             <i
               onClick={(event) =>
                 changeBlackList(
                   {
                     participants: chatData.participants,
                     blackListFlag: !isBlocked(chatData, userId),
-                    conversationId: chatData._id
+                    conversationId: chatData.id,
                   },
                   event
                 )

@@ -33,7 +33,6 @@
     flex-direction: column;
     justify-content: center;
     width: 830px;
-    // height: 80px;
     margin-bottom: 16px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(226, 226, 226);
@@ -109,21 +108,21 @@
   }
 
   &::before {
-    transform: translate(-50%, -50%) rotate(0deg); // Горизонтальная линия
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   &::after {
-    transform: translate(-50%, -50%) rotate(90deg); // Вертикальная линия
+    transform: translate(-50%, -50%) rotate(90deg);
   }
 
   &.open {
     &::before {
-      transform: translate(-50%, -50%) rotate(45deg); // Крест
+      transform: translate(-50%, -50%) rotate(45deg);
       background-color: #ebedf3;
     }
 
     &::after {
-      transform: translate(-50%, -50%) rotate(-45deg); // Крест
+      transform: translate(-50%, -50%) rotate(-45deg);
       background-color: #ebedf3;
     }
   }

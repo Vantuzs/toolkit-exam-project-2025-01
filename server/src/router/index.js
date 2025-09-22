@@ -182,13 +182,13 @@ router.post(
 
 router.post(
   '/getAllOffers',
-  // checkToken.checkToken,
+  checkToken.checkToken,
   offerController.getOffers
 )
 
 router.post(
   '/setOfferStatusModerator',
-  // checkToken.checkToken,
+  checkToken.checkToken,
   offerController.setOfferStatusModerator
 )
 

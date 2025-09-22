@@ -16,7 +16,7 @@ import styles from '../../components/OfferBox/OfferBox.module.sass';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import '../../components/OfferBox/confirmStyle.css';
 
-const OfferBox = (props) => {
+const OfferBoxTwo = (props) => {
   const findConversationInfo = () => {
     const { messagesPreview, id } = props;
     const participants = [id, props.data.User.id];
@@ -27,7 +27,7 @@ const OfferBox = (props) => {
       if (isEqual(participants, messagesPreview[i].participants)) {
         return {
           participants: messagesPreview[i].participants,
-          _id: messagesPreview[i]._id,
+          id: messagesPreview[i].id,
           blackList: messagesPreview[i].blackList,
           favoriteList: messagesPreview[i].favoriteList,
         };
@@ -44,7 +44,11 @@ const OfferBox = (props) => {
         {
           label: 'Yes',
           onClick: () =>
-            props.setOfferStatusModerator(props.data.User.id, props.data.id, 'resolve'),
+            props.setOfferStatusModerator(
+              props.data.User.id,
+              props.data.id,
+              'resolve'
+            ),
         },
         {
           label: 'No',
@@ -61,7 +65,11 @@ const OfferBox = (props) => {
         {
           label: 'Yes',
           onClick: () =>
-            props.setOfferStatusModerator(props.data.User.id, props.data.id, 'reject'),
+            props.setOfferStatusModerator(
+              props.data.User.id,
+              props.data.id,
+              'reject'
+            ),
         },
         {
           label: 'No',
@@ -165,14 +173,14 @@ const OfferBox = (props) => {
           <i onClick={goChat} className="fas fa-comments" />
         )}
       </div>
-        <div className={styles.btnsContainer}>
-          <div onClick={resolveOffer} className={styles.resolveBtn}>
-            Resolve
-          </div>
-          <div onClick={rejectOffer} className={styles.rejectBtn}>
-            Reject
-          </div>
+      <div className={styles.btnsContainer}>
+        <div onClick={resolveOffer} className={styles.resolveBtn}>
+          Resolve
         </div>
+        <div onClick={rejectOffer} className={styles.rejectBtn}>
+          Reject
+        </div>
+      </div>
     </div>
   );
 };
@@ -197,5 +205,5 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OfferBox)
+  connect(mapStateToProps, mapDispatchToProps)(OfferBoxTwo)
 );
